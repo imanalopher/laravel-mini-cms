@@ -17,7 +17,7 @@ class Teachers extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password',
+        'email', 'phone', 'password',
     ];
 
     /**
