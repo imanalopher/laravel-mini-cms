@@ -23,3 +23,10 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('teacher')->group(function() {
+    Route::get('/login', 'Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
+    Route::post('/login', 'Auth\TeacherLoginController@login')->name('teacher.login.submit');
+    Route::get('/home', 'TeachersController@index')->name('teacher.home');
+    Route::get('/logout', 'TeachersController@logout')->name('teacher.logout');
+});

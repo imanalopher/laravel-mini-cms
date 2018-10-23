@@ -18,6 +18,11 @@ return [
         'passwords' => 'users',
     ],
 
+    'teachers' => [
+        'driver' => 'eloquent',
+        'model' => App\Teachers::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -45,6 +50,15 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
+        'teacher-api' => [
+            'driver' => 'token',
+            'provider' => 'teachers',
+        ],
     ],
 
     /*
@@ -68,6 +82,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => App\Teachers::class,
         ],
 
         // 'users' => [
@@ -94,6 +112,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'teachers' => [
+            'provider' => 'teachers',
             'table' => 'password_resets',
             'expire' => 60,
         ],
