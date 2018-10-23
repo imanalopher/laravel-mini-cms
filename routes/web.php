@@ -31,3 +31,11 @@ Route::prefix('teacher')->group(function() {
     Route::get('/', 'TeachersController@index')->name('teacher.home');
     Route::get('/logout', 'TeachersController@logout')->name('teacher.logout');
 });
+
+Route::prefix('admin')->group(function() {
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/home', 'AdminController@index')->name('admin.home');
+    Route::get('/', 'AdminController@index')->name('admin.home');
+    Route::get('/logout', 'AdminController@logout')->name('admin.logout');
+});

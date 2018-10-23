@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
-class TeacherLoginController extends Controller
+class AdminLoginController extends Controller
 {
     /**
      * Show the application’s login form.
@@ -16,11 +17,11 @@ class TeacherLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.teacher-login');
+        return view('auth.admin-login');
     }
 
-    protected function guard() {
-        return Auth::guard('teacher');
+    protected function guard(){
+        return Auth::guard('admin');
     }
 
     use AuthenticatesUsers;
@@ -30,7 +31,7 @@ class TeacherLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/teacher/home';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
@@ -39,18 +40,18 @@ class TeacherLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:teacher')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     protected function credentials(Request $request)
     {
-        if(is_numeric($request->get('email'))) {
-            return [
-                'phone'    => $request->get('email'),
-                'password' => $request->get('password')
-            ];
-        }
-
-        return $request->only($this->username(), 'password');
+        return [
+            'login'    => $request->get('email'),
+            'password' => $request->get('password')
+        ];
     }
 }
