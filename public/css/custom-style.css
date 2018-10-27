@@ -161,6 +161,11 @@ a.article, a.article:hover {
     cursor: pointer;
 }
 
+.breadcrumb-item a {
+    color: #007bff;
+    cursor: pointer;
+}
+
 #sidebarCollapse span {
     width: 80%;
     height: 2px;

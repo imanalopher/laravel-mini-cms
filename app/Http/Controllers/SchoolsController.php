@@ -14,7 +14,8 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        //
+        $schools = Schools::paginate(10);
+        return view('school.index', ['schools' => $schools]);
     }
 
     /**
@@ -24,7 +25,7 @@ class SchoolsController extends Controller
      */
     public function create()
     {
-        //
+        return view('school.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class SchoolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        Schools::create($request->all());
+
+        return redirect()->route('admin.school.index');
     }
 
     /**
@@ -52,34 +59,50 @@ class SchoolsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Schools  $schools
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Schools $schools)
+    public function edit(int $id)
     {
-        //
+        $schools = Schools::find($id);
+        return view('school.edit', ['school' => $schools]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Schools  $schools
+     * @param  \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schools $schools)
+    public function update(Request $request, int $id)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $school = Schools::find($id);
+        if($school instanceof Schools) {
+            $school->update($request->all());
+        }
+
+        return redirect()->route('admin.school.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Schools  $schools
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Schools $schools)
+    public function destroy(int $id)
     {
-        //
+        $school = Schools::find($id);
+        if ($school instanceof Schools) {
+            $school->delete();
+        }
+
+        return redirect()->route('admin.school.index');
     }
 }
