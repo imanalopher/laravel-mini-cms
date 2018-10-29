@@ -32,9 +32,11 @@ Route::prefix('teacher')->group(function() {
     Route::get('/logout', 'TeachersController@logout')->name('teacher.logout');
 });
 
-Route::prefix('admin')->group(function() {
-    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+Route::get('/admin/login', 'Admin\Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('/admin/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth:admin']], function() {
+
     Route::get('/home', 'StudentController@index')->name('admin.home');
     Route::get('/', 'StudentController@index')->name('admin.home');
     Route::get('/logout', 'AdminController@logout')->name('admin.logout');
