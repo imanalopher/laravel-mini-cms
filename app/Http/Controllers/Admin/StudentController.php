@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Schools;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $schools = Schools::get(['id', 'name']);
+        return view('student.create', ['schools' => $schools]);
     }
 
     /**
@@ -38,7 +40,19 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $student = Student::create($request->all());
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = $student->id . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/students/');
+            $image->move($destinationPath, $name);
+        }
+
+        $student->save();
+
+        return redirect()->route('admin.student.index');
     }
 
     /**

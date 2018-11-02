@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Student extends Model
 {
+    protected $fillable = [
+        'firstName',
+        'lastName',
+        'sex',
+        'address',
+        'birthday',
+        'class',
+        'nfc',
+        'photo',
+        'school_id',
+    ];
+
     /**
      * @return BelongsTo
      */
