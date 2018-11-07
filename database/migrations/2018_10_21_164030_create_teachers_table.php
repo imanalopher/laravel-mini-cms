@@ -15,10 +15,13 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('firstName');
+            $table->string('lastName');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
+            $table->integer('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

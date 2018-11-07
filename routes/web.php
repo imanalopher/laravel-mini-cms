@@ -27,9 +27,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('teacher')->group(function() {
     Route::get('/login', 'Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
     Route::post('/login', 'Auth\TeacherLoginController@login')->name('teacher.login.submit');
-    Route::get('/home', 'TeachersController@index')->name('teacher.home');
-    Route::get('/', 'TeachersController@index')->name('teacher.home');
-    Route::get('/logout', 'TeachersController@logout')->name('teacher.logout');
+    Route::get('/home', 'Teacher\TeachersController@index')->name('teacher.home');
+    Route::get('/', 'Teacher\TeachersController@index')->name('teacher.home');
+    Route::get('/logout', 'Teacher\TeachersController@logout')->name('teacher.logout');
 });
 
 Route::get('/admin/login', 'Admin\Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -45,5 +45,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     });
     Route::group(['as' => 'admin.'], function() {
         Route::resource('school', 'SchoolsController');
+    });
+    Route::group(['as' => 'admin.'], function() {
+        Route::resource('teacher', 'TeachersController');
     });
 });

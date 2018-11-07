@@ -2,42 +2,42 @@
 
 @section('content')
 
-
     <div class="container">
         <div class="row">
             <div class="col-lg-12 float-right">
                 <div class="pull-left">
-                    <h2>Список Школ</h2>
+                    <h2>Teachers List</h2>
                 </div>
                 <div class="float-right">
-                    <a class="btn btn-success" href="{{ route('admin.student.create') }}"> Create New Student</a>
+                    <a class="btn btn-success" href="{{ route('admin.teacher.create') }}">Create New Teacher</a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                {{ $students->links() }}
+                {{ $teachers->links() }}
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th>Имя</th>
                         <th>Фамилия</th>
-                        <th></th>
+                        <th>E-mail</th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($students as $student)
+                    @foreach($teachers as $teacher)
                         <tr>
-                            <td>{{ $student->id }}</td>
-                            <td>{{ $student->firstName }}</td>
-                            <td>{{ $student->lastName }}</td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $student) }}">Show</a></td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $student) }}">Edit</a></td>
+                            <td>{{ $teacher->id }}</td>
+                            <td>{{ $teacher->firstName }}</td>
+                            <td>{{ $teacher->lastName }}</td>
+                            <td>{{ $teacher->email }}</td>
+                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $teacher) }}">Show</a></td>
+                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $teacher) }}">Edit</a></td>
                             <td>
-                                <form action="{{ route('admin.student.destroy', $student->id) }}" method="POST">
+                                <form action="{{ route('admin.student.destroy', $teacher->id) }}" method="POST">
 
                                     @csrf
                                     @method('DELETE')
@@ -49,7 +49,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{ $students->links() }}
+                {{ $teachers->links() }}
             </div>
         </div>
     </div>

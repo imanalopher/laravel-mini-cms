@@ -92,11 +92,17 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $student
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Student $student)
+    public function destroy(int $id)
     {
-        //
+        $student = Student::find($id);
+        if ($student instanceof Student) {
+            $student->delete();
+        }
+
+        return redirect()->route('admin.student.index');
     }
 }

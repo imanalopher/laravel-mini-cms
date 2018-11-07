@@ -1,35 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Schools;
 use App\Teachers;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
 
 class TeachersController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:teacher');
-    }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param Guard $auth
-     * @return void
+     * @return Factory|View
      */
-    public function index(Guard $auth)
+    public function index()
     {
-        dump($auth->user());
-        die;
+        $teachers = Teachers::paginate(20);
+        return view('admin.teacher.index', ['teachers' => $teachers]);
     }
 
     /**
@@ -39,7 +30,8 @@ class TeachersController extends Controller
      */
     public function create()
     {
-        //
+        $schools = Schools::get(['id', 'name']);
+        return view('admin.teacher.create', ['schools' => $schools]);
     }
 
     /**
@@ -50,7 +42,11 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = Teachers::create($request->all())->id;
+        $teacher = Teachers::find($id);
+        $teacher->password = Hash::make('admin');
+        $teacher->save();
+        return redirect()->route('admin.teacher.index');
     }
 
     /**
@@ -96,14 +92,5 @@ class TeachersController extends Controller
     public function destroy(Teachers $teachers)
     {
         //
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function logout(Request $request) {
-        Auth::logout();
-        return redirect()->route('teacher.login');
     }
 }

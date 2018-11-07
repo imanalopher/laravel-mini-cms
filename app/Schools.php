@@ -23,4 +23,12 @@ class Schools extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function teachers()
+    {
+        return $this->hasMany(Teachers::class);
+    }
 }

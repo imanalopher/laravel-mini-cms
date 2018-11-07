@@ -44,12 +44,6 @@
                 <li>
                     <a href="{{ route('admin.student.index') }}">Students</a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.school.index') }}">Schools</a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.teacher.index') }}">Teachers</a>
-                </li>
             </ul>
 
             <ul class="list-unstyled CTAs">
