@@ -20,7 +20,6 @@ class CreateStudentsTable extends Migration
             $table->boolean('sex');
             $table->string('address');
             $table->date('birthday');
-            $table->string('class');
             $table->string('nfc');
             $table->string('photo');
             $table->integer('school_id')->unsigned();

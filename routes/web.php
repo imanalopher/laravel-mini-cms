@@ -34,6 +34,9 @@ Route::post('/admin/login', 'Admin\Auth\AdminLoginController@login')->name('admi
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher', 'middleware' => ['auth:teacher']], function() {
     Route::get('/home', 'TeachersController@index')->name('teacher.home');
     Route::get('/', 'TeachersController@index')->name('teacher.home');
+    Route::group(['as' => 'teacher.'], function() {
+        Route::resource('klass', 'KlassesController');
+    });
 });
 
 

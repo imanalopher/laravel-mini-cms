@@ -56,9 +56,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="class" class="col-sm-2 col-form-label">Класс</label>
+                        <label for="klass" class="col-sm-2 col-form-label">Класс</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="class" name="class" placeholder="Класс">
+                            <select id="klass" name="klass_id" class="custom-select" id="">
+                                <option selected>Choose...</option>
+                                @foreach($klasses as $klass)
+                                    <option value="{{ $klass->id }}">{{ $klass->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

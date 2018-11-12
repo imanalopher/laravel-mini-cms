@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Klass;
 use App\Schools;
 use App\Student;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class StudentController extends Controller
     public function create()
     {
         $schools = Schools::get(['id', 'name']);
-        return view('student.create', ['schools' => $schools]);
+        $klasses = Klass::get(['id', 'name']);
+        return view('student.create', ['schools' => $schools, 'klasses' => $klasses]);
     }
 
     /**

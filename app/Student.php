@@ -17,6 +17,7 @@ class Student extends Model
         'nfc',
         'photo',
         'school_id',
+        'klass_id',
     ];
 
     /**
