@@ -15,28 +15,25 @@
         </div>
         <div class="row">
             <div class="col-12">
-                {{ $teachers->links() }}
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
                         <th>Имя</th>
-                        <th>Фамилия</th>
                         <th></th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($teachers as $teacher)
+                    @foreach($klasses as $klass)
                         <tr>
-                            <td>{{ $teacher->id }}</td>
-                            <td>{{ $teacher->firstName }}</td>
-                            <td>{{ $teacher->lastName }}</td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $teacher) }}">Show</a></td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $teacher) }}">Edit</a></td>
+                            <td>{{ $klass->id }}</td>
+                            <td>{{ $klass->name }}</td>
+                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $klass) }}">Show</a></td>
+                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $klass) }}">Edit</a></td>
                             <td>
-                                <form action="{{ route('admin.student.destroy', $teacher->id) }}" method="POST">
+                                <form action="{{ route('admin.student.destroy', $klass->id) }}" method="POST">
 
                                     @csrf
                                     @method('DELETE')
@@ -48,7 +45,6 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{ $teachers->links() }}
             </div>
         </div>
     </div>

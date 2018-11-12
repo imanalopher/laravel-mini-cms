@@ -24,16 +24,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('teacher')->group(function() {
-    Route::get('/login', 'Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
-    Route::post('/login', 'Auth\TeacherLoginController@login')->name('teacher.login.submit');
-    Route::get('/home', 'Teacher\TeachersController@index')->name('teacher.home');
-    Route::get('/', 'Teacher\TeachersController@index')->name('teacher.home');
-    Route::get('/logout', 'Teacher\TeachersController@logout')->name('teacher.logout');
-});
+Route::get('/teacher/login', 'Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
+Route::post('/teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login.submit');
+Route::get('/teacher/logout', 'Teacher\TeachersController@logout')->name('teacher.logout');
 
 Route::get('/admin/login', 'Admin\Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
+
+Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher', 'middleware' => ['auth:teacher']], function() {
+    Route::get('/home', 'TeachersController@index')->name('teacher.home');
+    Route::get('/', 'TeachersController@index')->name('teacher.home');
+});
+
+
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth:admin']], function() {
 

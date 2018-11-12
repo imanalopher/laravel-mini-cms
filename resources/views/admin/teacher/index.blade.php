@@ -23,6 +23,7 @@
                         <th>Имя</th>
                         <th>Фамилия</th>
                         <th>E-mail</th>
+                        <th>School</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -34,6 +35,7 @@
                             <td>{{ $teacher->firstName }}</td>
                             <td>{{ $teacher->lastName }}</td>
                             <td>{{ $teacher->email }}</td>
+                            <td>{{ $teacher->school->name }}</td>
                             <td><a class="btn btn-info" href="{{ route('admin.student.show', $teacher) }}">Show</a></td>
                             <td><a class="btn btn-info" href="{{ route('admin.student.edit', $teacher) }}">Edit</a></td>
                             <td>

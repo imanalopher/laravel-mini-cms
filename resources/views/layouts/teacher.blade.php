@@ -48,7 +48,7 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="{{ route('admin.logout')  }}" class="download">Выйти</a>
+                    <a href="{{ route('teacher.logout')  }}" class="download">Выйти</a>
                 </li>
             </ul>
         </nav>

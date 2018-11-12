@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Klass;
+use App\Schools;
 use App\Teachers;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -27,8 +29,13 @@ class TeachersController extends Controller
      */
     public function index()
     {
+        $currentTeacher = auth()->user();
 
-        return view('teacher.index');
+        /** @var Schools $school */
+        $school = $currentTeacher->school;
+        $klasses = Klass::where('school_id', $school->id)->get();
+
+        return view('teacher.index', ['klasses' => $klasses]);
     }
 
     /**
