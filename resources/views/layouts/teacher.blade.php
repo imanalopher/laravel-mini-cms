@@ -41,9 +41,6 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="{{ route('admin.student.index') }}">Students</a>
-                </li>
             </ul>
 
             <ul class="list-unstyled CTAs">

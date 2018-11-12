@@ -6,10 +6,7 @@
         <div class="row">
             <div class="col-lg-12 float-right">
                 <div class="pull-left">
-                    <h2>Teachers List</h2>
-                </div>
-                <div class="float-right">
-                    <a class="btn btn-success" href="{{ route('admin.teacher.create') }}">Create New Teacher</a>
+                    <h2>Klasses List</h2>
                 </div>
             </div>
         </div>
