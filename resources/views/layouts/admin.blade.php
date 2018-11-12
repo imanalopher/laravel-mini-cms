@@ -48,6 +48,9 @@
                     <a href="{{ route('admin.school.index') }}">Schools</a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.klass.index') }}">Klasses</a>
+                </li>
+                <li>
                     <a href="{{ route('admin.teacher.index') }}">Teachers</a>
                 </li>
             </ul>

@@ -49,4 +49,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::group(['as' => 'admin.'], function() {
         Route::resource('teacher', 'TeachersController');
     });
+    Route::group(['as' => 'admin.'], function() {
+        Route::resource('klass', 'KlassesController');
+    });
 });
