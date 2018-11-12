@@ -25,6 +25,8 @@ class CreateStudentsTable extends Migration
             $table->string('photo');
             $table->integer('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
+            $table->integer('klass_id')->unsigned();
+            $table->foreign('klass_id')->references('id')->on('klasses')->onDelete('cascade');
             $table->timestamps();
         });
     }

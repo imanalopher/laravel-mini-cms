@@ -44,7 +44,7 @@ class TeachersController extends Controller
     {
         $id = Teachers::create($request->all())->id;
         $teacher = Teachers::find($id);
-        $teacher->password = Hash::make('admin');
+        $teacher->password = Hash::make($request->get('password'));
         $teacher->save();
         return redirect()->route('admin.teacher.index');
     }
