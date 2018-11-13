@@ -31,6 +31,18 @@ Route::get('/teacher/logout', 'Teacher\TeachersController@logout')->name('teache
 Route::get('/admin/login', 'Admin\Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\AdminLoginController@login')->name('admin.login.submit');
 
+Route::get('/director/login', 'Auth\DirectorLoginController@showLoginForm')->name('director.login');
+Route::post('/director/login', 'Auth\DirectorLoginController@login')->name('director.login.submit');
+
+Route::group(['namespace' => 'Director', 'prefix' => 'director', 'middleware' => ['auth:director']], function() {
+    Route::get('/home', 'DirectorController@index')->name('director.home');
+    Route::get('/', 'DirectorController@index')->name('director.home');
+    Route::get('/logout', 'DirectorController@logout')->name('director.logout');
+//    Route::group(['as' => 'teacher.'], function() {
+//        Route::resource('klass', 'KlassesController');
+//    });
+});
+
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher', 'middleware' => ['auth:teacher']], function() {
     Route::get('/home', 'TeachersController@index')->name('teacher.home');
     Route::get('/', 'TeachersController@index')->name('teacher.home');

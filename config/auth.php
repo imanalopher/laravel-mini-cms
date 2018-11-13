@@ -28,6 +28,11 @@ return [
         'model' => App\Admin::class,
     ],
 
+    'director' => [
+        'driver' => 'eloquent',
+        'model' => App\Director::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -73,6 +78,11 @@ return [
             'driver' => 'token',
             'provider' => 'admins',
         ],
+
+        'director' => [
+            'driver' => 'session',
+            'provider' => 'directors',
+        ],
     ],
 
     /*
@@ -105,6 +115,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'directors' => [
+            'driver' => 'eloquent',
+            'model' => App\Director::class,
         ],
 
         // 'users' => [
@@ -142,6 +157,12 @@ return [
 
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'directors' => [
+            'provider' => 'directors',
             'table' => 'password_resets',
             'expire' => 60,
         ],

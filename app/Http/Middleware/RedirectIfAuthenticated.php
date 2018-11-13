@@ -26,6 +26,10 @@ class RedirectIfAuthenticated
                 if (Auth::guard($guard)->check()) {
                     return redirect()->route('admin.home');
                 }
+            case 'director' :
+                if (Auth::guard($guard)->check()) {
+                    return redirect()->route('director.home');
+                }
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect()->route('home');
