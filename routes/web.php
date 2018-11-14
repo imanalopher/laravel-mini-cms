@@ -40,9 +40,14 @@ Route::group(['namespace' => 'Director', 'prefix' => 'director', 'middleware' =>
     Route::get('/logout', 'DirectorController@logout')->name('director.logout');
     Route::group(['as' => 'director.'], function() {
         Route::resource('klass', 'KlassesController');
+        Route::get('/klass/{id}/create', 'KlassesController@createStudent')->name('klass.student.create');
+        Route::post('/klass/{id}/store', 'KlassesController@storeStudent')->name('klass.student.store');
     });
     Route::group(['as' => 'director.'], function() {
         Route::resource('school', 'SchoolsController');
+    });
+    Route::group(['as' => 'director.'], function() {
+        Route::resource('student', 'StudentController');
     });
 });
 

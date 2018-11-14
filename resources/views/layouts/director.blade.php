@@ -34,10 +34,10 @@
                     <a href="{{ route('director.klass.index') }}">Klasses</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.student.index') }}">Students</a>
+                    <a href="#">Students</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.teacher.index') }}">Teachers</a>
+                    <a href="#">Teachers</a>
                 </li>
             </ul>
 

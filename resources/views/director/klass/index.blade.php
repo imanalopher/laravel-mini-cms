@@ -32,16 +32,16 @@
                             <td>{{ $klass->id }}</td>
                             <td>{{ $klass->name }}</td>
                             <td>{{ $klass->school->name }}</td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $klass) }}">Show</a></td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $klass) }}">Edit</a></td>
+                            <td><a class="btn btn-info" href="{{ route('director.klass.show', $klass) }}">Show</a></td>
+                            <td><a class="btn btn-info" href="#">Edit</a></td>
                             <td>
-                                <form action="{{ route('admin.student.destroy', $klass->id) }}" method="POST">
+                                {{--<form action="{{ route('admin.student.destroy', $klass->id) }}" method="POST">--}}
 
-                                    @csrf
-                                    @method('DELETE')
+                                    {{--@csrf--}}
+                                    {{--@method('DELETE')--}}
 
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                {{--</form>--}}
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     @endforeach

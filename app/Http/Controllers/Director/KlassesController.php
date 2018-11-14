@@ -62,7 +62,7 @@ class KlassesController extends Controller
     {
         $students = Student::where('klass_id', $klassId)->paginate(30);
 
-        return view('teacher.student.index', ['students' => $students]);
+        return view('director.student.index', ['students' => $students, 'klassId' => $klassId]);
     }
 
     /**
@@ -97,5 +97,38 @@ class KlassesController extends Controller
     public function destroy(Teachers $teachers)
     {
         //
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createStudent(int $id)
+    {
+        return view('director.klass.student.create', ['id' => $id]);
+    }
+
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeStudent(int $id, Request $request)
+    {
+        $student = Student::create(array_merge($request->all(), [
+            'klass_id' => $id,
+            'school_id' => auth()->user()->school->id,
+        ]));
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = $student->id . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/students/'.$id.'/');
+            $image->move($destinationPath, $name);
+        }
+
+        $student->save();
+
+        return redirect()->route('director.klass.show', ['id' => $id]);
     }
 }
