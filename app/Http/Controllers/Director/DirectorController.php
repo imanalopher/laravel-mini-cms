@@ -25,6 +25,7 @@ class DirectorController extends Controller
      */
     public function index()
     {
+        $director = \auth()->user();
         return view('director.index');
     }
 

@@ -38,9 +38,9 @@ Route::group(['namespace' => 'Director', 'prefix' => 'director', 'middleware' =>
     Route::get('/home', 'DirectorController@index')->name('director.home');
     Route::get('/', 'DirectorController@index')->name('director.home');
     Route::get('/logout', 'DirectorController@logout')->name('director.logout');
-//    Route::group(['as' => 'teacher.'], function() {
-//        Route::resource('klass', 'KlassesController');
-//    });
+    Route::group(['as' => 'director.'], function() {
+        Route::resource('klass', 'KlassesController');
+    });
 });
 
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher', 'middleware' => ['auth:teacher']], function() {
