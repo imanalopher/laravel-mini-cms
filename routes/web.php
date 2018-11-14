@@ -41,6 +41,9 @@ Route::group(['namespace' => 'Director', 'prefix' => 'director', 'middleware' =>
     Route::group(['as' => 'director.'], function() {
         Route::resource('klass', 'KlassesController');
     });
+    Route::group(['as' => 'director.'], function() {
+        Route::resource('school', 'SchoolsController');
+    });
 });
 
 Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher', 'middleware' => ['auth:teacher']], function() {

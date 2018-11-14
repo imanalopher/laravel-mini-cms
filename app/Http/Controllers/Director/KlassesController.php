@@ -20,9 +20,12 @@ class KlassesController extends Controller
      */
     public function index()
     {
-        dd(auth()->user()->id);
+        $director = auth()->user();
+
+//        dump($director->school);
+//        die;
         $klasses = Klass::paginate(20);
-        return view('admin.klass.index', ['klasses' => $klasses]);
+        return view('director.klass.index', ['klasses' => $klasses]);
     }
 
     /**
@@ -32,8 +35,9 @@ class KlassesController extends Controller
      */
     public function create()
     {
-        $schools = Schools::get(['id', 'name']);
-        return view('admin.klass.create', ['schools' => $schools]);
+        $director = auth()->user();
+        $school = Schools::where('director_id', $director->id)->get(['id', 'name'])->first();
+        return view('director.klass.create', ['school' => $school]);
     }
 
     /**
@@ -45,7 +49,7 @@ class KlassesController extends Controller
     public function store(Request $request)
     {
         Klass::create($request->all());
-        return redirect()->route('admin.klass.index');
+        return redirect()->route('director.klass.index');
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Schools extends Model
 {
@@ -13,7 +15,7 @@ class Schools extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'director_id'
     ];
 
     /**
@@ -39,4 +41,14 @@ class Schools extends Model
     {
         return $this->hasMany(Klass::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function director()
+    {
+        return $this->belongsTo(Director::class);
+    }
+
+
 }

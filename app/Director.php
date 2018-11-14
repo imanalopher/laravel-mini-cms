@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -32,10 +33,10 @@ class Director extends Authenticatable
     ];
 
     /**
-     * @return BelongsTo
+     * @return HasOne
      */
     public function school()
     {
-        return $this->belongsTo(Schools::class);
+        return $this->hasOne(Schools::class);
     }
 }
