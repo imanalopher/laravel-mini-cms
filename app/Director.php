@@ -37,6 +37,6 @@ class Director extends Authenticatable
      */
     public function school()
     {
-        return $this->hasOne(Schools::class);
+        return $this->hasOne(Schools::class, 'director_id');
     }
 }

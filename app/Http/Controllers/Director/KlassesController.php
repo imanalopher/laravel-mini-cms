@@ -22,9 +22,11 @@ class KlassesController extends Controller
     {
         $director = auth()->user();
 
-//        dump($director->school);
-//        die;
-        $klasses = Klass::paginate(20);
+        $klasses = [];
+        if ($director->school instanceof Schools) {
+            $klasses = Klass::where('school_id', $director->school->id)->paginate(20);
+        }
+
         return view('director.klass.index', ['klasses' => $klasses]);
     }
 
