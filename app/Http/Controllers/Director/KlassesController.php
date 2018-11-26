@@ -70,24 +70,29 @@ class KlassesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Teachers  $teachers
+     * @param int $id
      * @return Response
      */
-    public function edit(Teachers $teachers)
+    public function edit(int $id)
     {
-        //
+        $klass = Klass::findOrFail($id);
+        return view('director.klass.edit', ['klass' => $klass]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teachers  $teachers
+     * @param  int $id
      * @return Response
      */
-    public function update(Request $request, Teachers $teachers)
+    public function update(int $id, Request $request)
     {
-        //
+        $klass = Klass::findOrFail($id);
+        $input = array_merge(['school_id' => $klass->school->id], $request->all());
+
+        $klass->update($input);
+        return redirect()->route('director.klass.index');
     }
 
     /**

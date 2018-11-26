@@ -33,7 +33,7 @@
                             <td>{{ $klass->name }}</td>
                             <td>{{ $klass->school->name }}</td>
                             <td><a class="btn btn-info" href="{{ route('director.klass.show', $klass) }}">Show</a></td>
-                            <td><a class="btn btn-info" href="#">Edit</a></td>
+                            <td><a class="btn btn-info" href="{{ route('director.klass.edit', $klass) }}">Edit</a></td>
                             <td>
                                 {{--<form action="{{ route('admin.student.destroy', $klass->id) }}" method="POST">--}}
 
