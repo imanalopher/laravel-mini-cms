@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12 float-right">
                 <div class="pull-left">
-                    <h2>Создать новый Школ {{ $id }}</h2>
+                    <h2>Создать новый Student {{ $id }}</h2>
                 </div>
             </div>
         </div>

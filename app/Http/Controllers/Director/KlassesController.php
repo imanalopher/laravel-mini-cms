@@ -62,7 +62,7 @@ class KlassesController extends Controller
      */
     public function show($klassId)
     {
-        $students = Student::where('klass_id', $klassId)->paginate(30);
+        $students = Student::where('klass_id', $klassId)->paginate(20);
 
         return view('director.student.index', ['students' => $students, 'klassId' => $klassId]);
     }

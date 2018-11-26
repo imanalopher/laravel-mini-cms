@@ -33,11 +33,11 @@
                 <li>
                     <a href="{{ route('director.klass.index') }}">Klasses</a>
                 </li>
+                {{--<li>--}}
+                    {{--<a href="#">Students</a>--}}
+                {{--</li>--}}
                 <li>
-                    <a href="#">Students</a>
-                </li>
-                <li>
-                    <a href="#">Teachers</a>
+                    <a href="{{ route('director.teacher.index') }}">Teachers</a>
                 </li>
             </ul>
 
