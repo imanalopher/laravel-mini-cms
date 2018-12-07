@@ -60,35 +60,51 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(int $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('admin.student.show', ['student' => $student]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(int $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('admin.student.edit', ['student' => $student]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, int $id)
     {
-        //
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'sex' => 'required',
+            'address' => 'required',
+            'birthday' => 'required',
+            'nfc' => 'required',
+        ]);
+
+        $student = Student::find($id);
+        if($student instanceof Student) {
+            $student->update($request->all());
+        }
+
+        return redirect()->route('admin.student.index');
     }
 
     /**

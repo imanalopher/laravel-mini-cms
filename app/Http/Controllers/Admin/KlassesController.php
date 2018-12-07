@@ -50,12 +50,14 @@ class KlassesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Teachers  $teachers
+     * @param int $id
      * @return Response
      */
-    public function show(Teachers $teachers)
+    public function show(int $id)
     {
-        //
+        $klass = Klass::findOrFail($id);
+        dump($klass);
+        die;
     }
 
     /**
