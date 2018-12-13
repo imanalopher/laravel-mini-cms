@@ -19,8 +19,6 @@
                         <th>Имя</th>
                         <th>Фамилия</th>
                         <th></th>
-                        <th></th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,16 +27,10 @@
                             <td>{{ $student->id }}</td>
                             <td>{{ $student->firstName }}</td>
                             <td>{{ $student->lastName }}</td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $student) }}">Show</a></td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $student) }}">Edit</a></td>
                             <td>
-                                <form action="{{ route('admin.student.destroy', $student->id) }}" method="POST">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <a class="btn btn-info" href="{{ route('teacher.student.show', $student) }}">
+                                    <i class="fa fa-folder-open"></i> Show
+                                </a>
                             </td>
                         </tr>
                     @endforeach

@@ -18,7 +18,6 @@
                         <th>ID</th>
                         <th>Имя</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,15 +25,10 @@
                         <tr>
                             <td>{{ $klass->id }}</td>
                             <td>{{ $klass->name }}</td>
-                            <td><a class="btn btn-info" href="{{ route('teacher.klass.show', $klass) }}">Show</a></td>
                             <td>
-                                <form action="{{ route('admin.teacher.destroy', $klass->id) }}" method="POST">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <a class="btn btn-info" href="{{ route('teacher.klass.show', $klass) }}">
+                                    <i class="fa fa-folder-open"></i> Show
+                                </a>
                             </td>
                         </tr>
                     @endforeach

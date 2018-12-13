@@ -41,6 +41,9 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('teacher.home') }}">Home</a>
+                </li>
             </ul>
 
             <ul class="list-unstyled CTAs">

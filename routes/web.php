@@ -60,6 +60,9 @@ Route::group(['namespace' => 'Teacher', 'prefix' => 'teacher', 'middleware' => [
     Route::group(['as' => 'teacher.'], function() {
         Route::resource('klass', 'KlassesController');
     });
+    Route::group(['as' => 'teacher.'], function() {
+        Route::resource('student', 'StudentController');
+    });
 });
 
 

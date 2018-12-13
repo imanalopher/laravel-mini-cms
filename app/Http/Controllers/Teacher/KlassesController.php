@@ -53,7 +53,7 @@ class KlassesController extends Controller
      * @param int $klassId
      * @return Response
      */
-    public function show($klassId)
+    public function show(int $klassId)
     {
         $students = Student::where('klass_id', $klassId)->paginate(30);
 
