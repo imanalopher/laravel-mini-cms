@@ -36,15 +36,25 @@
                             <td>{{ $teacher->lastName }}</td>
                             <td>{{ $teacher->email }}</td>
                             <td>{{ $teacher->school->name }}</td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.show', $teacher) }}">Show</a></td>
-                            <td><a class="btn btn-info" href="{{ route('admin.student.edit', $teacher) }}">Edit</a></td>
+                            <td>
+                                <a class="btn btn-info" href="{{ route('admin.teacher.show', $teacher) }}">
+                                    <i class="fas fa-folder-open" aria-hidden="true"></i> Open
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info" href="{{ route('admin.teacher.edit', $teacher) }}">
+                                    <i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit
+                                </a>
+                            </td>
                             <td>
                                 <form action="{{ route('admin.student.destroy', $teacher->id) }}" method="POST">
 
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt" aria-hidden="true"></i> Delete
+                                    </button>
                                 </form>
                             </td>
                         </tr>

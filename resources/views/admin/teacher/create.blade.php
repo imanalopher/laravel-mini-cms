@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="offset-3 col-6">
-                <form action="{{ route('admin.teacher.store') }}" method="post">
+                <form action="{{ route('admin.teacher.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label for="firstName" class="col-sm-2 col-form-label">First name</label>
@@ -52,6 +52,12 @@
                                     <option value="{{ $school->id }}">{{ $school->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="photo" class="col-sm-2 col-form-label">Foto</label>
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" id="photo" name="photo" placeholder="Foto">
                         </div>
                     </div>
                     <div class="form-group row">

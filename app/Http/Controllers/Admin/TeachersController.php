@@ -42,45 +42,74 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Teachers::create($request->all())->id;
-        $teacher = Teachers::find($id);
+        $teacher = Teachers::create($request->all());
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = $teacher->id . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/teachers/');
+
+            $image->move($destinationPath, $name);
+            $teacher->photo = $name;
+        }
+
         $teacher->password = Hash::make($request->get('password'));
         $teacher->save();
+
         return redirect()->route('admin.teacher.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Teachers  $teachers
+     * @param int $id
      * @return Response
      */
-    public function show(Teachers $teachers)
+    public function show(int $id)
     {
-        //
+        $teacher = Teachers::findOrFail($id);
+        return view('admin.teacher.show', ['teacher' => $teacher]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Teachers  $teachers
+     * @param int $id
      * @return Response
      */
-    public function edit(Teachers $teachers)
+    public function edit(int $id)
     {
-        //
+        $teacher = Teachers::findOrFail($id);
+
+        return view('admin.teacher.edit', ['teacher' => $teacher]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teachers  $teachers
+     * @param int $id
      * @return Response
      */
-    public function update(Request $request, Teachers $teachers)
+    public function update(Request $request, int $id)
     {
-        //
+        $teacher = Teachers::findOrFail($id);
+
+        if($teacher instanceof Teachers) {
+            $teacher->update($request->all());
+        }
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = $teacher->id . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/teachers/');
+
+            $image->move($destinationPath, $name);
+            $teacher->photo = $name;
+        }
+
+        $teacher->save();
+
+        return redirect()->route('admin.teacher.index');
     }
 
     /**

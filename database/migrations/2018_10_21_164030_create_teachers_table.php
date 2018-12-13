@@ -19,6 +19,8 @@ class CreateTeachersTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->string('photo');
+            $table->string('nfc');
             $table->string('password');
             $table->integer('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
