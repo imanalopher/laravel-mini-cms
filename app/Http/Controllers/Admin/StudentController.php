@@ -19,7 +19,7 @@ class StudentController extends Controller
     {
         $students = Student::paginate(20);
 
-        return view('student.index', ['students' => $students]);
+        return view('admin.student.index', ['students' => $students]);
     }
 
     /**
@@ -50,6 +50,7 @@ class StudentController extends Controller
             $name = $student->id . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads/students/');
             $image->move($destinationPath, $name);
+            $student->photo = $name;
         }
 
         $student->save();
@@ -103,6 +104,15 @@ class StudentController extends Controller
         if($student instanceof Student) {
             $student->update($request->all());
         }
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = $student->id . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/students/');
+            $image->move($destinationPath, $name);
+            $student->photo = $name;
+        }
+        $student->save();
 
         return redirect()->route('admin.student.index');
     }

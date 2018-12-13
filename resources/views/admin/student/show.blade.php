@@ -61,12 +61,7 @@
                 <div class="form-group row">
                     <label for="photo" class="col-sm-2 col-form-label">Foto</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="photo" name="photo" placeholder="Foto">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Создать</button>
+                        <img src="{{ asset('uploads/students/' . $student->photo) }}" alt="" style="width: auto; height: 200px" />
                     </div>
                 </div>
             </div>
