@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Admin;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+//        $this->loadMenu();
         Schema::defaultStringLength(191);
     }
 
@@ -26,5 +29,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    private function loadMenu()
+    {
+        View::composer('layouts.admin', function ($view) {
+            $view->with('admins', Admin::all());
+        });
     }
 }

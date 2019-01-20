@@ -40,6 +40,10 @@
                         <li>
                             <a href="#">Home 3</a>
                         </li>
+                        <li>
+
+{{--                            {{ dump($admins) }}--}}
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -53,6 +57,9 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.teacher.index') }}">Teachers</a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.subject.index') }}">Subjects</a>
                 </li>
             </ul>
 

@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12 float-right">
                 <div class="pull-left">
-                    <h2>Список Школ</h2>
+                    <h2>Список Урок</h2>
                 </div>
                 <div class="float-right">
                     <a class="btn btn-success" href="{{ route('admin.student.create') }}"> Create New Student</a>
@@ -16,38 +16,38 @@
         </div>
         <div class="row">
             <div class="col-12">
-                {{ $students->links() }}
+                {{ $subjects->links() }}
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Имя</th>
-                        <th>Фамилия</th>
-                        <th>Школ</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Teacher</th>
                         <th></th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($students as $student)
+                    @foreach($subjects as $subject)
                         <tr>
-                            <td>{{ $student->id }}</td>
-                            <td>{{ $student->firstName }}</td>
-                            <td>{{ $student->lastName }}</td>
-                            <td>{{ $student->school->name }}</td>
+                            <td>{{ $subject->id }}</td>
+                            <td>{{ $subject->title }}</td>
+                            <td>{{ $subject->description }}</td>
+                            <td>{{ $subject->teacher->phone }}</td>
                             <td>
-                                <a class="btn btn-primary a-btn-slide-text" href="{{ route('admin.student.show', $student) }}">
+                                <a class="btn btn-primary a-btn-slide-text" href="{{ route('admin.subject.show', $subject) }}">
                                     <i class="fas fa-folder-open" aria-hidden="true"></i> Open
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-info" href="{{ route('admin.student.edit', $student) }}">
+                                <a class="btn btn-info" href="{{ route('admin.subject.edit', $subject) }}">
                                     <i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('admin.student.destroy', $student->id) }}" method="POST">
+                                <form action="{{ route('admin.subject.destroy', $subject->id) }}" method="POST">
 
                                     @csrf
                                     @method('DELETE')
@@ -61,7 +61,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{ $students->links() }}
+                {{ $subjects->links() }}
             </div>
         </div>
     </div>
